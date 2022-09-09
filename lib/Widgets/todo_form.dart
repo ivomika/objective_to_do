@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:objective_to_do/Data/data.dart';
+import 'package:objective_to_do/Models/task_model.dart';
 import 'package:objective_to_do/Widgets/bottom_elevated_button.dart';
 import 'package:objective_to_do/Widgets/styled_text_field.dart';
+
+import '../cubit/app_cubits.dart';
 
 class ToDoForm extends StatefulWidget {
   const ToDoForm({Key? key}) : super(key: key);
@@ -32,12 +37,15 @@ class _ToDoFormState extends State<ToDoForm> {
             height: 65,
             width: double.maxFinite,
             child: BottomElevatedButton(
-              onPressed: (){
+              onPressed: () async{
                 // Validate will return true if the form is valid, or false if
                 // the form is invalid.
                 if (_formKey.currentState!.validate()) {
                   // Process data.
                   print(todoEditingController.text);
+                  var provider = BlocProvider.of<AppCubits>(context);
+                  var tasks = await provider.tasks();
+                  provider.addTask(TaskModel(tasks.length, 228, 'type'));
                 }
               },
             ),
