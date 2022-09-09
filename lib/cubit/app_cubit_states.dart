@@ -31,7 +31,7 @@ class LoadingState extends CubitStates{
 
 class HistoryState extends CubitStates{
   HistoryState(this.history);
-  final HistoryModel history;
+  final List<HistoryModel> history;
 
   @override
   // TODO: implement props

@@ -9,7 +9,8 @@ var tasks = [
 ];
 
 var history = [
-  HistoryModel(tasks[0], DateTime(2022, 12, 13)),
-  HistoryModel(tasks[1], DateTime(2022, 12, 13)),
-  HistoryModel(tasks[2], DateTime(2022, 12, 13)),
+  HistoryModel(tasks[0], DateTime(2022, 12, 13), 5, 200),
+  HistoryModel(tasks[1], DateTime(2022, 12, 13), 6, 300),
+  HistoryModel(tasks[2], DateTime(2022, 12, 13), 7, 400),
+  HistoryModel(tasks[2], DateTime(2022, 12, 14), 8, 392),
 ];

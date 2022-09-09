@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:objective_to_do/Models/task_model.dart';
+import 'package:objective_to_do/Widgets/task_view.dart';
+import 'package:objective_to_do/cubit/app_cubits.dart';
 
 import '../Assets/app_theme.dart';
 
@@ -82,35 +85,17 @@ class Task extends StatelessWidget {
                                 )
                             )
                         ),
-                        onPressed: (){},
+                        onPressed: (){
+                          BlocProvider.of<AppCubits>(context).getHistory(task);
+                        },
 
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 20
                           ),
-                          child: Row(
-                            children: [
-                              Text(
-                                task.count.toString(),
-                                style: const TextStyle(
-                                    fontSize: 32,
-                                    fontWeight: FontWeight.bold,
-                                    color: AppTheme.textPrimary
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6),
-
-                                child: Text(
-                                  task.type,
-                                  style: const TextStyle(
-                                      fontSize: 20,
-                                      color: AppTheme.secondaryGray
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
+                          child: TaskView(task: task,
+                          fontSize: 32,
+                          alignment: MainAxisAlignment.start)
                         ),
                       ),
                     ),

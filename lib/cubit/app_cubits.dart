@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:objective_to_do/Models/history_model.dart';
 import 'package:objective_to_do/Models/task_model.dart';
 
 import '../services/data_services.dart';
@@ -31,9 +32,12 @@ class AppCubits extends Cubit<CubitStates> {
 
   void addTask(TaskModel task) async{
     final tasks = await data.addTask(task);
-    print(tasks);
     emit(LoadingState());
     emit(TasksState(tasks));
+  }
+
+  void addHistory(HistoryModel story) async{
+    await data.addHistory(story);
   }
 
   Future<List<TaskModel>> tasks() async{

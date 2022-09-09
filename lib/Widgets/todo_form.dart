@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:objective_to_do/Data/data.dart';
+import 'package:objective_to_do/Models/history_model.dart';
 import 'package:objective_to_do/Models/task_model.dart';
 import 'package:objective_to_do/Widgets/bottom_elevated_button.dart';
 import 'package:objective_to_do/Widgets/styled_text_field.dart';
@@ -42,10 +42,12 @@ class _ToDoFormState extends State<ToDoForm> {
                 // the form is invalid.
                 if (_formKey.currentState!.validate()) {
                   // Process data.
-                  print(todoEditingController.text);
                   var provider = BlocProvider.of<AppCubits>(context);
                   var tasks = await provider.tasks();
-                  provider.addTask(TaskModel(tasks.length, 228, 'type'));
+                  var newTask = TaskModel(tasks.length+1, 228, 'type');
+
+                  provider.addTask(newTask);
+                  provider.addHistory(HistoryModel(newTask, DateTime.now(), 0, newTask.count));
                 }
               },
             ),

@@ -39,6 +39,7 @@ dependencies:
   bloc:
   flutter_bloc:
   equatable:
+  flutter_dash:
 
 dev_dependencies:
   flutter_test:

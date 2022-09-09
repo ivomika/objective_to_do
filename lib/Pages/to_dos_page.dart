@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:objective_to_do/Models/task_model.dart';
 import 'package:objective_to_do/Widgets/task.dart';
 import 'package:objective_to_do/Widgets/todo_form.dart';
-import 'package:objective_to_do/Data/data.dart' as data;
 import '../Assets/app_theme.dart';
 import '../cubit/app_cubit_states.dart';
 import '../cubit/app_cubits.dart';

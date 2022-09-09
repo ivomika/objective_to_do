@@ -1,9 +1,5 @@
-import 'dart:convert';
-
 import 'package:objective_to_do/Models/history_model.dart';
 import 'package:objective_to_do/Models/task_model.dart';
-import 'package:objective_to_do/cubit/app_cubit_states.dart';
-
 import '../Data/data.dart';
 
 
@@ -17,18 +13,20 @@ class DataService{
     }
   }
 
-  Future<HistoryModel> getHistory(int id) async{
+  Future<List<HistoryModel>> getHistory(int id) async{
     try{
+      List<HistoryModel> taskHistory = [];
+
       for(var story in history){
         if(story.task.id == id) {
-          return story;
+          taskHistory.add(story);
         }
       }
 
-      return history[0];
+      return taskHistory;
     }catch(e){
       print(e);
-      return history[0];
+      return history;
     }
   }
 
@@ -40,6 +38,14 @@ class DataService{
     }catch(e){
       print(e);
       return tasks;
+    }
+  }
+
+  Future addHistory(HistoryModel story) async{
+    try{
+      history.add(story);
+    }catch(e){
+      print(e);
     }
   }
 }
