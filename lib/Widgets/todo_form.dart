@@ -42,12 +42,18 @@ class _ToDoFormState extends State<ToDoForm> {
                 // the form is invalid.
                 if (_formKey.currentState!.validate()) {
                   // Process data.
+                  var value = todoEditingController.text;
+                  var splitValue = value.split(' ');
+
                   var provider = BlocProvider.of<AppCubits>(context);
                   var tasks = await provider.tasks();
-                  var newTask = TaskModel(tasks.length+1, 228, 'type');
+                  var count = int.parse(splitValue[0]);
+                  var newTask = TaskModel(tasks.length+1, count, splitValue[1], count);
 
                   provider.addTask(newTask);
                   provider.addHistory(HistoryModel(newTask, DateTime.now(), 0, newTask.count));
+
+                  _formKey.currentState?.reset();
                 }
               },
             ),

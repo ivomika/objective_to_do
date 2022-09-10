@@ -1,18 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_dash/flutter_dash.dart';
-import 'package:objective_to_do/Models/history_model.dart';
-
 import '../Assets/app_theme.dart';
 
 class HistoryPoint extends StatelessWidget {
-  final HistoryModel history;
+  final String title;
+  final String text;
 
-  const HistoryPoint({Key? key, required this.history}) : super(key: key);
+  const HistoryPoint({
+    Key? key,
+    required this.title,
+    required this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var date = history.date;
-
     return Column(
       children: [
         Row(
@@ -27,7 +27,7 @@ class HistoryPoint extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                 child: Text(
-                  '${date.day}.${date.month}.${date.year}',
+                  title,
                   style: const TextStyle(
                       fontSize: 12, color: AppTheme.textPrimary),
                 )),
@@ -41,10 +41,7 @@ class HistoryPoint extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
-            'Выполнено ${history.change} '
-            '${history.task.type}, '
-            'осталось  ${history.remains} '
-            '${history.task.type}',
+            text,
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 16,

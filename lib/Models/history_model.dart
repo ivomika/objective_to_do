@@ -1,8 +1,8 @@
 import 'package:objective_to_do/Models/task_model.dart';
 
 class HistoryModel{
-  TaskModel task;
-  DateTime date;
+  final TaskModel task;
+  final DateTime date;
   int change;
   int remains;
 

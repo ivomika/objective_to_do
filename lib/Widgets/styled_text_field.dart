@@ -41,7 +41,7 @@ class StyledTextField extends StatelessWidget {
             )
         ),
         filled: true,
-        contentPadding: EdgeInsets.all(20),
+        contentPadding: const EdgeInsets.all(20),
         hintText: 'Enter your ToDo',
         hintStyle: TextStyle(
             color: AppTheme.textPrimary.withOpacity(.4)
@@ -51,9 +51,17 @@ class StyledTextField extends StatelessWidget {
           color: AppTheme.textPrimary
       ),
       validator: (String? value) {
-        if (value == null || value.isEmpty) {
+        if (value == null || value.trim().isEmpty) {
           return 'Please enter some text';
         }
+        if (value.trim().split(' ').length != 2){
+          return 'Please enter task required format: 228 apple';
+        }
+        var splitValue = value.trim().split(' ');
+        if (int.tryParse(splitValue[0]) == null){
+          return 'Please enter required COUNT: 0-9';
+        }
+
         return null;
       },
     );

@@ -34,6 +34,7 @@ class Task extends StatelessWidget {
                   width: double.maxFinite,
                   child: ElevatedButton(
                     style: ButtonStyle(
+                        elevation: MaterialStateProperty.all<double>(0),
                         backgroundColor: MaterialStateProperty.all<Color>(
                             AppTheme.secondary
                         ),
@@ -46,7 +47,16 @@ class Task extends StatelessWidget {
                             )
                         )
                     ),
-                    onPressed: (){},
+                    onPressed: () async{
+                      var provider = BlocProvider.of<AppCubits>(context);
+                      var newTask = await provider.decrementTaskCount(task, 1);
+                      if(newTask.count == 0){
+                        provider.deleteTask(newTask);
+                      }
+                    },
+                    onLongPress: (){
+
+                    },
                     child: const Text(
                       '-',
                       style: TextStyle(
@@ -66,6 +76,9 @@ class Task extends StatelessWidget {
                   child: Dismissible(
                     key: ValueKey<int>(task.id),
                     direction: DismissDirection.startToEnd,
+                    onDismissed: (direction){
+                      BlocProvider.of<AppCubits>(context).deleteTask(task);
+                    },
 
                     child: SizedBox(
                       width: double.maxFinite,
@@ -73,6 +86,7 @@ class Task extends StatelessWidget {
 
                       child: ElevatedButton(
                         style: ButtonStyle(
+                            elevation: MaterialStateProperty.all<double>(0),
                             backgroundColor: MaterialStateProperty.all<Color>(
                                 AppTheme.secondary
                             ),
