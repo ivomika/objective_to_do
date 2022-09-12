@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:objective_to_do/Assets/app_theme.dart';
 import 'package:objective_to_do/Pages/history_page.dart';
 import 'package:objective_to_do/Pages/to_dos_page.dart';
 
@@ -21,9 +22,13 @@ class _AppCubitLogicsState extends State<AppCubitLogics> {
       body: BlocBuilder<AppCubits, CubitStates>(
         builder: (context, state){
           if(state is LoadingState){
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return Container(
+              width: double.maxFinite,
+              height: double.maxFinite,
+              color: AppTheme.primary ,
+              child: Center(
+                child: CircularProgressIndicator(),
+              ));
           }
           if(state is TasksState){
             return const ToDosPage();

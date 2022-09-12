@@ -14,12 +14,13 @@ class ToDosPage extends StatefulWidget {
 }
 
 class _ToDosPageState extends State<ToDosPage> {
+  final GlobalKey<AnimatedListState> _listKey =  GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppCubits, CubitStates>(
       builder: (BuildContext context, state) {
-        var tasks = (state as TasksState).tasks;
+        var tasks = (state as TasksState).tasks.reversed.toList();
 
         return Scaffold(
             backgroundColor: AppTheme.primary,
@@ -30,8 +31,9 @@ class _ToDosPageState extends State<ToDosPage> {
                     flex: 4,
                     child: ListView.builder(
                       itemCount: tasks.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Task(task: tasks[index]);
+                      itemBuilder: (context, index) {
+                        return Task(
+                          task: tasks[index]);
                       },
                     )),
                 const ToDoForm()

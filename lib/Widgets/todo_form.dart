@@ -8,7 +8,7 @@ import 'package:objective_to_do/Widgets/styled_text_field.dart';
 import '../cubit/app_cubits.dart';
 
 class ToDoForm extends StatefulWidget {
-  const ToDoForm({Key? key}) : super(key: key);
+  const ToDoForm({Key? key,}) : super(key: key);
 
   @override
   State<ToDoForm> createState() => _ToDoFormState();
@@ -48,10 +48,9 @@ class _ToDoFormState extends State<ToDoForm> {
                   var provider = BlocProvider.of<AppCubits>(context);
                   var tasks = await provider.tasks();
                   var count = int.parse(splitValue[0]);
-                  var newTask = TaskModel(tasks.length+1, count, splitValue[1], count);
+                  var newTask = TaskModel(count: count, type:splitValue[1], startCount: count);
 
                   provider.addTask(newTask);
-                  provider.addHistory(HistoryModel(newTask, DateTime.now(), 0, newTask.count));
 
                   _formKey.currentState?.reset();
                 }

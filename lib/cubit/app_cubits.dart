@@ -17,7 +17,7 @@ class AppCubits extends Cubit<CubitStates> {
     try {
       emit(LoadingState());
       final taskList = await data.getTasks();
-      emit(TasksState(taskList));
+      emit(TasksState(taskList as List<TaskModel>));
     } catch (e) {
       print(e);
     }
@@ -25,7 +25,7 @@ class AppCubits extends Cubit<CubitStates> {
 
   void getHistory(TaskModel task) async {
     emit(LoadingState());
-    final history = await data.getHistory(task.id);
+    final history = await data.getHistory(task.id!);
     emit(HistoryState(history));
   }
 
@@ -40,7 +40,7 @@ class AppCubits extends Cubit<CubitStates> {
   }
 
   Future<List<TaskModel>> tasks() async {
-    return await data.getTasks();
+    return await data.getTasks() as List<TaskModel>;
   }
 
   void deleteTask(TaskModel task) async {

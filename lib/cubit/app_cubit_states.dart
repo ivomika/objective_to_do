@@ -7,7 +7,6 @@ abstract class CubitStates extends Equatable{}
 
 class InitialState extends CubitStates{
   @override
-  // TODO: implement props
   List<Object> get props => [];
 
 }
@@ -17,14 +16,12 @@ class TasksState extends CubitStates{
   final List<TaskModel> tasks;
 
   @override
-  // TODO: implement props
   List<Object> get props => [tasks];
 
 }
 
 class LoadingState extends CubitStates{
   @override
-  // TODO: implement props
   List<Object> get props => [];
 
 }
@@ -34,7 +31,6 @@ class HistoryState extends CubitStates{
   final List<HistoryModel> history;
 
   @override
-  // TODO: implement props
   List<Object> get props => [history];
 
 }
